@@ -8,7 +8,7 @@
   * [Git](#git)
   * [Tmux](#tmux)
 
-# About #
+# About #  [![Build Status](https://travis-ci.org/getslash/scotty.png)](https://travis-ci.org/drrlvn/config-files)
 
 A collection of configuration file for emacs, vim, zsh, git, and others, as well as various
 plugins/packages as git submodules.

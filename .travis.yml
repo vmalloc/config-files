@@ -1,0 +1,16 @@
+sudo: false
+language: generic
+env:
+  global:
+    - PATH="$HOME/.evm/bin:$PATH"
+  matrix:
+  - EMACS_VERSION=emacs-25.2-travis
+install:
+  - curl -fsSkL https://raw.github.com/rejeep/evm/master/go | bash
+  - evm config path /tmp
+  - evm install $EMACS_VERSION
+  - evm use $EMACS_VERSION
+  - ln -s $(pwd)/emacs.d ~/.emacs.d
+script:
+  - cd ~/.emacs.d
+  - emacs --eval "(progn (package-initialize) (package-refresh-contents) (package-install 'use-package) (push \"~/.emacs.d/lisp\" load-path)) " --batch -f batch-byte-compile init.el lisp/*.el

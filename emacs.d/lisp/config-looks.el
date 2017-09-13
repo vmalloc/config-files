@@ -32,7 +32,7 @@
 (use-package powerline
   :defer
   :config (remove-hook 'focus-out-hook 'powerline-unset-selected-window))
-
+s
 (use-package spaceline
   :defer
   :config (setq spaceline-responsive nil))

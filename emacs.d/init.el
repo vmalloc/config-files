@@ -35,10 +35,9 @@
 (unless (file-exists-p custom-file)
   (write-region "" nil custom-file))
 (load custom-file)
-
-(require 'config-defuns-autoloads)
 (require 'config-looks)
-
+(require 'config-defuns-autoloads)
+s
 (defconst rg-executable (executable-find "rg"))
 
 (bind-key "C-x r q" #'save-buffers-kill-emacs)
