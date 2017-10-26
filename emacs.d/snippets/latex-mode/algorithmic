@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: algorithmic
+# key: algorithmic
+# --
+\begin{otherlanguage}{english}
+\begin{algorithm}
+\begin{algorithmic}
+$0
+\end{algorithmic}
+\end{algorithm}
+\end{otherlanguage}

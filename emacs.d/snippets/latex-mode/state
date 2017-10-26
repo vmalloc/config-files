@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: state
+# key: state
+# binding: C-c s
+# --
+\STATE{$$0$}

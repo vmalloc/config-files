@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: for
+# key: for
+# --
+\FOR{$$1$ \TO{$$2$}}
+$0
+\ENDFOR{}
