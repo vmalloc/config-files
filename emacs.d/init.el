@@ -46,7 +46,7 @@
   :type 'boolean
   :group 'my/customizations)
 
-(bind-key "<escape>" #'keyboard-escape-quit)
+;;(bind-key "<escape>" #'keyboard-escape-quit)
 (bind-key "C-x r q" #'save-buffers-kill-emacs)
 (unbind-key "C-x C-c")
 (bind-key "<f5>" #'my/revert-buffer-no-confirmation)
