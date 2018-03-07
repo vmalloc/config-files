@@ -14,7 +14,8 @@
       load-prefer-newer t
       custom-file "~/.emacs.d/custom.el"
       package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-                         ("melpa" . "https://melpa.org/packages/")))
+                         ("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")))
 
 (package-initialize)
 (unless (package-installed-p 'use-package)
@@ -236,6 +237,12 @@
 (use-package ox-html
   :defer
   :config (setq org-html-postamble nil))
+
+(use-package ox-reveal
+  :ensure)
+
+(use-package htmlize
+  :ensure)
 
 (use-package glasses
   :defer
@@ -822,6 +829,8 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
                 web-mode-css-indent-offset 2
                 web-mode-style-padding 2
                 web-mode-script-padding 2))
+
+
 
 (use-package visual-regexp
   :ensure
