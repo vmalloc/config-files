@@ -9,7 +9,7 @@
  '(org-directory "~/Dropbox/orgs")
  '(org-refile-targets
    (quote
-    (("links.org" :maxlevel . 2)
+    (("links.org" :maxlevel . 1)
      ("personal.org" :maxlevel . 2)
      ("infinidat.org" :maxlevel . 2)
      ("blender.org" :maxlevel . 2))))
