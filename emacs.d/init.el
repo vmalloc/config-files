@@ -501,7 +501,17 @@
 
 (use-package rust-mode
   :ensure
-  :defer)
+  :defer
+  :config (setq rust-format-on-save t))
+
+(use-package flycheck-rust
+  :ensure
+  :hook (flycheck-mode . flycheck-rust-setup))
+
+(use-package racer
+  :ensure
+  :hook ((rust-mode . racer-mode)
+         (racer-mode . eldoc-mode)))
 
 (use-package yaml-mode
   :ensure
@@ -538,7 +548,8 @@
   (setq company-idle-delay 0
         company-minimum-prefix-length 2
         company-backends (delete 'company-clang company-backends)
-        company-global-modes '(not eshell-mode))
+        company-global-modes '(not eshell-mode)
+        company-tooltip-align-annotations t)
   (global-company-mode 1))
 
 (use-package company-statistics
@@ -708,10 +719,9 @@
     (setq magit-revision-show-gravatars '("^Author:     " . "^Commit:     ")))
   (remove-hook 'magit-pre-display-buffer-hook #'magit-save-window-configuration)
   (magit-add-section-hook 'magit-status-sections-hook
-                          #'magit-insert-unpushed-to-upstream
+                          #'magit-insert-recent-commits
                           #'magit-insert-unpushed-to-upstream-or-recent
                           'replace)
-  (magit-add-section-hook 'magit-status-sections-hook #'magit-insert-recent-commits nil 'append)
   (magit-add-section-hook 'magit-status-sections-hook #'magit-insert-modules-overview nil 'append))
 
 (use-package magit-gitflow
@@ -729,7 +739,8 @@
   :bind (("C-c C-g h" . git-link-homepage)
          ("C-c C-g c" . git-link-commit)
          ("C-c C-g l" . git-link)
-         ("C-c C-g H" . my/git-link-homepage-in-browser)))
+         ("C-c C-g H" . my/git-link-homepage-in-browser)
+         ("C-c C-g t" . my/git-link-travis)))
 
 (use-package man
   :bind ("<f1>" . man)
@@ -828,7 +839,8 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
                 web-mode-markup-indent-offset 2
                 web-mode-css-indent-offset 2
                 web-mode-style-padding 2
-                web-mode-script-padding 2))
+                web-mode-script-padding 2
+                web-mode-enable-auto-expanding t))
 
 
 
