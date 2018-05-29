@@ -74,6 +74,7 @@ export NVM_DIR="$HOME/.nvm"
 
 alias gs="git status"
 alias j=z
+alias cat=bat
 
 ## fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
