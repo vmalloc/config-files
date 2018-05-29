@@ -148,10 +148,11 @@
 
 (defun display-startup-echo-area-message () ".")
 
-(setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+(setq auto-save-default nil
       auto-window-vscroll nil
       backup-directory-alist `((".*" . ,temporary-file-directory))
       comment-padding nil
+      confirm-kill-processes nil
       diff-switches "-u"
       disabled-command-function nil
       history-length 500
@@ -219,11 +220,7 @@
 
 (use-package org
   :bind (("<f10>" . org-agenda)
-         ("C-<f10>" . org-capture)
-         :map org-mode-map
-         ("C-M-<return>" . org-insert-heading-after-current)
-         ("M-<return>" . org-meta-return)
-         ("M-S-<return>" . org-insert-todo-heading))
+         ("C-<f10>" . org-capture))
   :hook (org-mode . my/org-mode-hook)
   :config
   (setq org-replace-disputed-keys t
@@ -305,10 +302,7 @@
 (use-package ivy
   :ensure
   :demand
-  :bind (("C-c s". ivy-resume)
-         :map ivy-minibuffer-map
-         ("C-m" . ivy-alt-done)
-         ("C-j" . ivy-done))
+  :bind ("C-c s". ivy-resume)
   :config
   (setq ivy-use-virtual-buffers t
         ivy-use-selectable-prompt t
@@ -325,6 +319,18 @@
   :ensure
   :bind (:map ivy-minibuffer-map
               ("M-o" . ivy-dispatching-done-hydra)))
+
+(use-package ivy-posframe
+  :ensure
+  :config
+  (setq ivy-posframe-parameters '((left-fringe . 8)
+                                  (right-fringe . 8))
+        ivy-display-functions-alist (append ivy-display-functions-alist
+                                            '((swiper . nil)
+                                              (counsel-rg . nil)
+                                              (counsel-ag . nil)
+                                              (t . ivy-posframe-display-at-frame-center))))
+  (ivy-posframe-enable))
 
 (use-package counsel
   :ensure
@@ -785,8 +791,7 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
   :commands (popwin:display-buffer-condition popwin:display-buffer-action)
   :init (push '(popwin:display-buffer-condition popwin:display-buffer-action) display-buffer-alist)
   :config
-  (push '("*Flycheck errors*" :stick t) popwin:special-display-config)
-  (push 'helpful-mode popwin:special-display-config))
+  (push '("*Flycheck errors*" :stick t) popwin:special-display-config))
 
 (use-package projectile
   :ensure
@@ -815,6 +820,14 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 (use-package restclient
   :ensure
   :mode ("\\.http\\'" . restclient-mode))
+
+(use-package super-save
+  :ensure
+  :config
+  (setq super-save-auto-save-when-idle t)
+  (push "magit-status" super-save-triggers)
+  (push "projectile-compile-project" super-save-triggers)
+  (super-save-mode 1))
 
 (use-package syntax-subword
   :ensure
@@ -870,7 +883,9 @@ _M-p_: Unmark  _M-n_: Unmark  _q_: Quit"
 
 (use-package wrap-region
   :ensure
-  :config (wrap-region-global-mode 1))
+  :config
+  (wrap-region-add-wrapper "|" "|" nil 'rust-mode)
+  (wrap-region-global-mode 1))
 
 (use-package langtool
   :ensure
