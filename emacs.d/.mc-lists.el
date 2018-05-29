@@ -172,6 +172,7 @@
         my/hydra-multiple-cursors/mc/mark-next-like-this
         my/hydra-multiple-cursors/mc/mark-previous-like-this
         my/hydra-multiple-cursors/mc/skip-to-next-like-this
+        my/hydra-multiple-cursors/mc/skip-to-previous-like-this
         my/hydra-multiple-cursors/mc/unmark-next-like-this
         my/hydra-multiple-cursors/mc/unmark-previous-like-this
         my/hydra-multiple-cursors/nil
