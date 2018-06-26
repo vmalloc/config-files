@@ -79,6 +79,12 @@
         '(
           (:name "Important"
                  :priority "A")
+          (:name "Doing"
+                 :todo "DOING"
+                 )
+          (:name "Soon"
+                 :tag "soon"
+                 )
           (:name "Work"
                  :tag "work"
                  :tag "infinidat")
